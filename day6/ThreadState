@@ -1,0 +1,23 @@
+A thread is a path of execution in a program that goes through the following states of a thread.
+The five states are as follows:
+1:New
+2:Runnable
+3:Running
+4:Blocked
+5:Dead
+
+NewState:
+When an instance thread class  created a new thread is created but it is not alive yet.
+
+Runnable state:
+Runnable state is a state in which a thread is ready to go to the running state.it may come from new state or blocked or waiting
+state.
+
+Running state:
+Running state in thread is currently executing. it may go to the blocked state or waiting state or dead state.
+
+Blocked state:
+In this state the thread is blocked for specific amount time or waiting for some resource to execute forthere.
+
+Dead state:
+After completion of the task the thread go to the dead state in which the thread is dead.

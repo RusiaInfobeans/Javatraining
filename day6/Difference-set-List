@@ -1,0 +1,10 @@
+List is an ordered sequence of elements whereas Set is a distinct list of elements which is unordered.
+We  can add duplicate in list but in set duplicate is not allowed.
+List permits any number of null values in its collection while Set permits only one null value in its collection.
+New methods are defined inside List interface .
+But, no new methods are defined inside Set interface, so we have to use Collection interface methods only with Set subclasses .
+List can be inserted in in both forward direction and backward direction using List iterator,
+while Set can be traversed only in forward direction with the help of iterator.
+List is an ordered sequence of elements, however set is distinct list of element which is unordered.
+So, we use list for storing non-unique objects as per insertion order and use set for storing unique objects in random order
+

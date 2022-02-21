@@ -1,0 +1,5 @@
+HashMap and LinkedHashMap are common implementation of Map.
+The main difference between HashMap and LinkedHashMap is that LinkedHashMap maintains insertion order of keys,
+order in which keys are inserted to LinkedHashMap while HashMap does not maintain any order of keys.
+LinkedHashMap requires more memory than HashMap because of the ordering feature.
+Internally LinkedHashMap uses doubly Linked List to maintain order of elements.
