@@ -1,0 +1,3 @@
+Hibernate XML mapping file contains the mapping relationship between Java class and database table.
+This is always named as “xx.hbm.xml” and declared in the Hibernate configuration file “hibernate.cfg.xml”.
+for example for person class we may use person.hbm.xml.

@@ -1,0 +1,2 @@
+The name of the default hibernate configuration file hibernate.cfg.xml .
+The property name that is used to automatically create the table in case the table is not there hbm2ddl.

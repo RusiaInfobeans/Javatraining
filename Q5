@@ -1,0 +1,86 @@
+It give us to write queries without doing raw SQL as well as gives us some object-oriented control over the queries,
+which is one of the main features of Hibernate.
+The Criteria API allows us to build up a criteria query object programmatically,
+where we can apply different kinds of filtration rules and logical conditions.
+example:
+public class CriteriaAPIExample {
+    public static void main(String[] args) {
+        Session session = Utility.getSession();
+        CriteriaQuery<Student> critertiaQuery = betweenMethod(session);
+        CriteriaQuery<Student> critertiaQuery = betweenStudent(session);
+        Double criteriaQuery=avgStudent(session);
+        System.out.println(criteriaQuery);
+
+       CriteriaQuery<Object[]> critertiaQuery1 = groupStudent(session);
+       List<Object[]> resultList = session.createQuery(critertiaQuery1).getResultList();
+        resultList.forEach(item-> System.out.println("name : "+item[0]+"\t count : "+item[1]));
+
+        CriteriaQuery<Object[]> critertiaQuery2 = countStudent(session);
+        List<Object[]> resultList1 = session.createQuery(critertiaQuery2).getResultList();
+        resultList1.forEach(item-> System.out.println("name : "+item[0]+"\t count : "+item[1]));
+
+    }
+    private static CriteriaQuery<Student> betweenStudent(Session session) {
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Student> critertiaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.select(root).where(criteriaBuilder.like(root.get("name"),"Student-1"));
+        return critertiaQuery;
+    }
+    private static Double avgStudent(Session session) {
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Double> critertiaQuery = criteriaBuilder.createQuery(Double.class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.select(criteriaBuilder.avg(root.get("marks")));
+        Double result = (Double) session.createQuery(critertiaQuery).getSingleResult();
+        return result;
+    }
+    private static CriteriaQuery<Object[]> groupStudent(Session session) {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> criteriaQuery = builder.createQuery(Object[].class);
+        Root<Student> root = criteriaQuery.from(Student.class);
+        criteriaQuery.multiselect(root.get("name"),builder.count(root.get("name")));
+        criteriaQuery.groupBy(root.get("name"));
+
+       return criteriaQuery;
+    }
+    private static CriteriaQuery<Object[]> countStudent(Session session) {
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> critertiaQuery = criteriaBuilder.createQuery(Object[].class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.multiselect(root.get("name"),criteriaBuilder.count(root.get("name")));
+        critertiaQuery.groupBy(root.get("name"));
+        critertiaQuery.having(criteriaBuilder.like(root.get("name"),"Student-2"));
+        return critertiaQuery;
+    }
+    private static CriteriaQuery<Student> betweenMethod(Session session) {
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Student> critertiaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.select(root).where(criteriaBuilder.between(root.get("marks"),10,20));
+        return critertiaQuery;
+    }
+    private static CriteriaQuery<Student> ltMethod(Session session) {
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Student> critertiaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.select(root).where(criteriaBuilder.lt(root.get("marks"),10));
+        return critertiaQuery;
+    }
+    private static CriteriaQuery<Student> gtMethod(Session session) {
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Student> critertiaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.select(root).where(criteriaBuilder.gt(root.get("marks"),90));
+        return critertiaQuery;
+    }
+
+    private static void selectQuery() {
+        Session session = Utility.getSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Student> critertiaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> root = critertiaQuery.from(Student.class);
+        critertiaQuery.select(root);
+        System.out.println(session.createQuery(critertiaQuery).getResultList());
+    }
+}

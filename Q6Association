@@ -1,0 +1,20 @@
+Association in hibernate tells the relationship between the objects  classes.
+That is how the entities are related to each other.
+there are 4 type of association that is:-
+one to one
+one to many
+many to many
+many to many
+
+A one-to-one association is similar to many-to-one association with a difference that the column will be set as unique.
+For example, an address object can be associated with a single employee object.
+
+One To Many Mapping in Hibernate. In simple terms, one to many mapping means that one row in a table can be mapped
+to multiple rows in another table. For example, think of a Cart system where we have another table for Items.
+
+A many-to-one association is the most common kind of association where an Object can be associated with multiple objects.
+For example, the same address object can be associated with multiple employee objects.
+
+Hibernate many to many mapping is made between two entities where one can have relation with multiple other entity
+instances. For example, for a subscription service SubscriptionEntity and ReaderEntity can be two type of entities
+Any subscription can have multiple readers, where a reader can subscribe to multiple subscriptions.

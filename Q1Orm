@@ -1,0 +1,6 @@
+Orm Stands for object relation mapping.
+It operates on the objects.So the whole methodology followed by ORMs is dependent on the object-oriented Concepts.
+ORMs generate objects which map to tables in the database virtually.
+Once these objects are up, then it can easily work to retrieve, manipulate or delete any field from the table without
+paying much attention to language specifically.
+ORM lets us use classes instead of database tables, and those classes implement DBAL to save you from writing queries.

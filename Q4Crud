@@ -1,0 +1,139 @@
+CRUD stands for Create,Retrive,Update and Delete.
+
+package day10;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import utils.Utility;
+public class AssociationExample {
+    public static void main(String[] args) {
+        insertInitial();
+        insertNewPhoneNumber();
+        deletePerson();
+    }
+
+    private static void insertNewPhoneNumber() {
+        Session session = Utility.getSession();
+        Transaction transaction = session.beginTransaction();
+        Person person = session.get(Person.class,1);
+        PhoneNumber phoneNumber = new PhoneNumber();
+        phoneNumber.setNumber("999999");
+        phoneNumber.setProvider("jio");
+        phoneNumber.setPerson(person);
+
+        session.persist(phoneNumber);
+        transaction.commit();
+        session.close();
+    }
+    private static void deletePerson(){
+        Session session = Utility.getSession();
+        Transaction transaction = session.beginTransaction();
+        Person person = session.get(Person.class,1);
+        session.remove(person);
+        transaction.commit();
+        session.close();
+    }
+    private static void insertInitial() {
+        Session session = Utility.getSession();
+        Transaction transaction = session.beginTransaction();
+        PhoneNumber phoneNumber = new PhoneNumber();
+        Person person= new Person();
+        person.setName("name-1");
+        phoneNumber.setNumber("1234");
+        phoneNumber.setProvider("airtel");
+        phoneNumber.setPerson(person);
+
+        session.persist(phoneNumber);
+        transaction.commit();
+        session.close();
+    }
+}
+--------------------------------------------------------------
+package day10;
+
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    @OneToMany(mappedBy = "person",cascade = CascadeType.REMOVE)
+    private Set<PhoneNumber> phoneNumbers= new HashSet<>();
+
+    public Set<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public Person() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+-----------------------------------------------
+package day10;
+
+import jakarta.persistence.*;
+@Entity
+public class PhoneNumber {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String number;
+    private String provider;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public PhoneNumber() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+}
