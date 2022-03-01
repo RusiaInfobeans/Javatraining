@@ -1,3 +1,46 @@
 Hibernate XML mapping file contains the mapping relationship between Java class and database table.
 This is always named as “xx.hbm.xml” and declared in the Hibernate configuration file “hibernate.cfg.xml”.
 for example for person class we may use person.hbm.xml.
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/orm/hbm">
+    <class name="Car" table="CarWithOutAnnotation">
+        <id name="id" type="int">
+
+            <column name="id"></column>
+            <generator class="increment"></generator>
+        </id>
+
+        <property name="name" column="name" type="string"/>
+        <property name="speed" column="speed" type="int"/>
+        <property name="cost" column="cost" type="int"/>
+    </class>
+</hibernate-mapping>
+
+-----------------------------------
+package day11.Task;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private int speed;
+    private int cost;
+}
+
+----------------------------------------------------------
+package day11.Task;
+
+public class CarWithOutAnnotation {
+    private int id;
+    private String name;
+    private int speed;
+    private int cost;
+}
