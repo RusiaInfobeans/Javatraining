@@ -19,22 +19,19 @@ public class CatDriver {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Cat> criteriaQuery= criteriaBuilder.createQuery(Cat.class);
         Root<Cat> root=criteriaQuery.from(Cat.class);
-        criteriaQuery.orderBy(criteriaBuilder.asc(root.get("age")));
-
-        criteriaQuery.select(root).where(criteriaBuilder
-                .and(criteriaBuilder.like(root.get("name"),"m%"),criteriaBuilder.gt(root.get("weight"),2)));
-
+        criteriaQuery.select(root).where(criteriaBuilder .and(criteriaBuilder.like(root.get("name"),"m%"),criteriaBuilder.gt(root.get("weight"),2)));
+         criteriaQuery.orderBy(criteriaBuilder.asc(root.get("age")));
         return criteriaQuery;
 
     }
 
     public static void insertCats(){
         Session session = Utility.getSession();
-        String[] names = new String[]{"cat1","cat2","cat3","cat4","cat5"};
+        String[] names = new String[]{"cat1","cat2","cat3","cat4","mat5"};
         Transaction transaction = session.beginTransaction();
         for(int i=0;i<100;i++){
             Cat cat=new Cat();
-            cat.setName(names[(int)(Math.random()*4)]);
+            cat.setName(names[(int)(Math.random()*5)]);
             cat.getWeight((int)(Math.random()*10));
             cat.setAge((int)(Math.random()*10));
             session.persist(cat);
