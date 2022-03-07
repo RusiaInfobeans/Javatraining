@@ -33,7 +33,7 @@ https://www.facebook.com//addfriend                 PUT
 }
 
 (iv) Unfriends of another user
-https://www.facebook.com//friendlist?userid=101         Delete
+https://www.facebook.com//delete?userid=101         Delete
 {
     "friendList":[user1,user2,user3,user4]
 }
