@@ -1,0 +1,52 @@
+
+Ex= facebook API Example
+
+(i) create user
+https://www.facebook.com/createuser         POST
+{
+    "userName":"",
+    "address":{},
+    "age": ,
+    "educationDetails":[],
+    "phoneNumber":,
+    "email":
+
+}
+
+(ii) show profile
+https://www.facebook.com/users?userId=101       GET
+{
+   usersDetail:
+    {   "userName":  ,
+        "age":  ,
+        "educationDetails": [] ,
+        "address:{},
+        "phoneNumber":,
+        "email":
+    }
+}
+(iii) Add friend
+https://www.facebook.com//addfriend                 PUT
+{
+    "userId":"" ,
+    "friendUserId": ""
+}
+
+(iv) Unfriends of another user
+https://www.facebook.com//friendlist?userid=101         Delete
+{
+    "friendList":[user1,user2,user3,user4]
+}
+
+(v) post
+https://www.facebook.com//posts?userId=101     GET
+{
+    "postList":[post1,post2,post3]
+}
+
+(vi) likes
+https://www.facebook.com//like          PUT
+{
+    "userId":"",
+    "postId":""
+}
