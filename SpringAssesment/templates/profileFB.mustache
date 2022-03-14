@@ -1,5 +1,24 @@
+
 <div>
     <h1>User Profile</h1>
-    <p>Name: &nbsp;&nbsp;{{name}}</p>
-    <p>Email Id: &nbsp;&nbsp;{{email}}</p>
+    <p>Name: &nbsp;{{name}}</p>
+    <p>Email Id: &nbsp;{{email}}</p>
+    <form action="/show" method="post">
+        <input type="submit" value="Create Post"/>
+    </form>
+    <form action="/posts" method="get">
+        <input value="All Posts" type="submit"/>
+    </form>
+    <form action="/myPost" method="get">
+        <input hidden name="email" value={{email}}>
+        <input value="My Post" type="submit"/>
+    </form>
+    <form action="/all" method="get">
+        <input type="hidden" name="userEmail" value={{email}}>
+        <input value="All Users" type="submit"/>
+    </form>
+    <form action="/allFriends" method="get">
+        <input type="hidden" name="email" value={{email}}>
+        <input value="My Friends" type="submit">
+    </form>
 </div>
