@@ -1,17 +1,28 @@
-<!--<div>-->
-<!--    {{#users}}-->
-<!--        <h3>{{email}}</h3>-->
-<!--    {{/users}}-->
-<!--</div>-->
 <div>
-    {{#User}}
+    <h1>List of users</h1>
+    {{#users}}
         <h1>USER</h1>
-        <form method="post" action="/followUsers">
-            <h3>name:&nbsp;{{name}}</h3>
-            <h3>email:&nbsp;{{email}}</h3>
-            <input type="hidden" name="email" value={{userEmail}}>
-            <input type="hidden" name="userEmail" value={{email}}>
-            <input type="submit" value="follow">
+        name:     {{name}}
+        email:   {{email}}
+        <form method="post" action="/friend">
+            <input type="hidden" name="userEmail" value={{userEmail}}>
+            <input type="hidden" name="password" value={{userPassword}}>
+            <input type="hidden" name="friendEmail" value={{email}}>
+            <input type="submit" value="Friend">
         </form>
-    {{/User}}
+
+        <form method="post" action="/block">
+            <input type="hidden" name="userEmail" value={{userEmail}}>
+            <input type="hidden" name="userPassword" value={{userPassword}}>
+            <input type="hidden" name="email" value={{email}}>
+
+            <input type="submit" value="block">
+        </form>
+
+        <form method="get" action="/posts/{{email}}">
+            <input type="hidden" name="userEmail" value={{userEmail}}>
+            <input type="submit" value="posts">
+        </form>
+
+    {{/users}}
 </div>
