@@ -1,0 +1,11 @@
+<div>
+    <h> All posts</h>
+    {{#posts}}
+        <p>{{user.email}}</p>
+        <p> {{post}}</p>
+    {{/posts}}
+    <form action="/users" method="get">
+        <input type="hidden" name="email" value={{userEmail}}>
+        <input type="submit"/>
+    </form>
+</div>
