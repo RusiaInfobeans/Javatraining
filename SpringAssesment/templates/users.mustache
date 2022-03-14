@@ -1,0 +1,17 @@
+<!--<div>-->
+<!--    {{#users}}-->
+<!--        <h3>{{email}}</h3>-->
+<!--    {{/users}}-->
+<!--</div>-->
+<div>
+    {{#User}}
+        <h1>USER</h1>
+        <form method="post" action="/followUsers">
+            <h3>name:&nbsp;{{name}}</h3>
+            <h3>email:&nbsp;{{email}}</h3>
+            <input type="hidden" name="email" value={{userEmail}}>
+            <input type="hidden" name="userEmail" value={{email}}>
+            <input type="submit" value="follow">
+        </form>
+    {{/User}}
+</div>
