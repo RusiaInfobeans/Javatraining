@@ -1,7 +1,6 @@
 package SpringAssesment.dao;
 
 import SpringAssesment.User;
-
 import java.util.List;
 
 public interface UserDao {
@@ -9,7 +8,9 @@ public interface UserDao {
 
     void create(User user);
 
-    List<Object[]> read();
+    List<User> read();
 
-    List<User> readByEmail(String email);
+    User readByEmail(String email);
+
+    void updateVisibility(String visibility, Integer user_id);
 }

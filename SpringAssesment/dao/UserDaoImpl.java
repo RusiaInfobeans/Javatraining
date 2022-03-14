@@ -1,16 +1,17 @@
 package SpringAssesment.dao;
 
-import SpringAssesment.dao.UserDao;
 import SpringAssesment.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class UserDaoImpl implements UserDao {
+
 
     @Autowired
     Session session;
@@ -28,16 +29,37 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<Object[]> read() {
-        return session.createQuery("select name,email,password from User", Object[].class).getResultList();
+    public List<User> read() {
+        List<User> resultList = session.createQuery("From User", User.class).getResultList();
+        if (!resultList.isEmpty()) return resultList;
+        return new ArrayList<>();
     }
 
     @Override
-    public List<User> readByEmail(String email) {
-        Query query = session.createQuery("from User where email=:email");
+    public User readByEmail(String email) {
+        String SQL = "From User where email = '" + email + "'";
+        List<User> resultList = session.createQuery(SQL, User.class).getResultList();
+        if (resultList.size() > 0) {
+            User singleResult = resultList.get(0);
+            return singleResult;
+        }
+        return null;
+
+        /* Query query = session.createQuery("from " +
+                "User where email=:email");
         query.setParameter("email", email);
-        return query.getResultList();
+        return (User) query.getSingleResult();*/
     }
 
+    @Override
+    public void updateVisibility(String visibility, Integer user_id) {
+        session.beginTransaction();
+        String SQL = "UPDATE User SET userPostVisibility =:visibility   WHERE id = :user_id";
+        Query query = session.createQuery(SQL);
+        query.setParameter("visibility", visibility);
+        query.setParameter("user_id", user_id);
+        int i = query.executeUpdate();
+        session.getTransaction().commit();
+    }
 
 }
