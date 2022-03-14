@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity(name = "Post")
-@Table(name = "post_spring")
+@Table(name = "post_facebook")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +28,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", post='" + post + '\'' +
-                ", email='" + email + '\'' +
-                ", timestamp=" + timestamp +
-                ", user=" + user +
-                '}';
+        return "Post{" + "id=" + id + ", post='" + post + '\'' + ", email='" + email + '\'' + ", timestamp=" + timestamp + ", user=" + user + '}';
     }
 
     public String getEmail() {

@@ -1,10 +1,9 @@
 package SpringAssesment;
 
-
 import javax.persistence.*;
 
 @Entity(name = "Friend")
-@Table(name = "friend_spring")
+@Table(name = "friend_facebook")
 public class Friend {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +13,7 @@ public class Friend {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
+    @Column(updatable = true)
     private boolean blocked = false;
 
     public Friend(Integer id, Integer friendId, User user, boolean blocked) {

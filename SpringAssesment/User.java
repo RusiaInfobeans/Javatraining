@@ -3,16 +3,17 @@ package SpringAssesment;
 import javax.persistence.*;
 
 @Entity(name = "User")
-@Table(name = "user_spring")
-public
-class User {
+@Table(name = "user_facebook")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
     private String email;
     private String password;
+    private String userPostVisibility = "PUBLIC";
 
     public User() {
     }
@@ -23,18 +24,17 @@ class User {
         this.password = password;
     }
 
-    public User(String friendid) {
-        this.email = friendid;
-    }
-
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", userPostVisibility='" + userPostVisibility + '\'' + '}';
+    }
+
+    public String getUserPostVisibility() {
+        return userPostVisibility;
+    }
+
+    public void setUserPostVisibility(String userPostVisibility) {
+        this.userPostVisibility = userPostVisibility;
     }
 
     public Integer getId() {
