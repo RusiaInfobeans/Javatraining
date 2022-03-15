@@ -28,7 +28,7 @@
 <!--</div>-->
 --------------------------------------------------------------------------------------------------------------------------
 <div>
-    <h> List of tweets for the user {{name}}</h>
+<!--    <h> List of tweets for the user {name}}</h>-->
     {{#tweets}}
         <p>{{tweet}}</p>
     {{/tweets}}
@@ -36,8 +36,8 @@
         <label for="email">Email:</label><br>
         <input type="text" name="email"><br>
 
-        <label for="password">Password:</label><br>
-        <input type="password" name="password"><br>
+<!--        <label for="password">Password:</label><br>-->
+<!--        <input type="password" name="password"><br>-->
 
 
         <label for="tweet">tweet:</label><br>
@@ -47,10 +47,17 @@
         <input type="submit"/>
     </form>
 
-            <form action="/follow" method="get">
-                <input hidden name="userEmail" value={{userEmail}}>
-                <input hidden name="password" value={{passwordUser}}>
-                <input hidden name="followerEmail" value={{email}}>
-                <input value="follow" type="submit"/>
-            </form>
+        {{#users}}
+            <h1>User</h1>
+            <h3> name:  {{name}}</h3>
+            <h3> email: {{email}} </h3>
+            {{#allowed}}
+                <form action="/follow" method="post">
+                    <input hidden name="userEmail" value={{userEmail}}>
+                    <input hidden name="password" value={{passwordUser}}>
+                    <input hidden name="followerEmail" value={{email}}>
+                    <input value="follow" type="submit"/>
+                </form>
+            {{/allowed}}
+        {{/users}}
 </div>
